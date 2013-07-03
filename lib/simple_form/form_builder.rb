@@ -1,3 +1,5 @@
+require 'simple_form/form_builder'
+
 module SimpleForm
   class FormBuilder < ActionView::Helpers::FormBuilder
     def div_tabs &block
