@@ -1,4 +1,5 @@
 require "form_translation/version"
+require "form_translation/engine"
 require "form_translation/for_model"
 require "form_translation/custom_form_builder"
 
