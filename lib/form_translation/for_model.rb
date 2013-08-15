@@ -22,6 +22,7 @@ module FormTranslation
 
     module ClassMethods
       def translate_me *methods
+        store :translation
         methods.each do |m|
           FormTranslation::foreign_languages.each do |l|
             store_accessor :translation, "#{l}_#{m}".to_sym
