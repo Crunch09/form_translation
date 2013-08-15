@@ -15,10 +15,10 @@ gem 'form_translation', github: 'Crunch09/form_translation'
 
 And then execute:
 
-`
+```
 $ bundle
 $ rails g form_translation:install
-`
+```
 
 ## Usage
 
@@ -26,27 +26,27 @@ $ rails g form_translation:install
 should be translated.
 ```ruby
 class Article < ActiveRecord::Base
-  include FormTranslation::ForModel
+      include FormTranslation::ForModel
 
-  translate_me :subject, :body
+      translate_me :subject, :body
 end
 ```
 * Within your `simple_form`-Form specify where to put your translation-tabs
 with a `languagify` block.
-```ruby
+```erb
 <%= simple_form_for(@article) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :date %>
-  </div>
-  <div>
-    <%= f.languagify do |l| %>
-      <%= l.input :subject %>
-      <%= l.input :body %>
-    <% end %>
-  </div>
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+      <div class="form-inputs">
+        <%= f.input :date %>
+      </div>
+      <div>
+        <%= f.languagify do |l| %>
+          <%= l.input :subject %>
+          <%= l.input :body %>
+        <% end %>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit %>
+      </div>
 <% end %>
 ```
 
