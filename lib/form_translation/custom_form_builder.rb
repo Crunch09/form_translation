@@ -39,7 +39,7 @@ module FormTranslation
       FormTranslation.languages.collect do |l|
         template.content_tag(:div, class: 'tab-pane', id: "#{l}_#{rnd}") do
           if l == :de
-            yield
+            yield self
           else
             instance_exec do
               alias :old_input :input
@@ -48,7 +48,7 @@ module FormTranslation
                 attribute_name = "#{@l}_#{attribute_name}"
                 old_input(attribute_name, options, &block)
               end
-              yield
+              yield self
               alias :input :old_input
             end
           end
