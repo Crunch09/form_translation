@@ -1,24 +1,54 @@
 # FormTranslation
 
-TODO: Write a gem description
+**Not ready, don't use it in production yet.**
+
+It uses `ActiveRecord::Store` to store language specific values and adds
+tabs to your forms for each language.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'form_translation'
+```ruby
+gem 'form_translation', github: 'Crunch09/form_translation'
+```
 
 And then execute:
 
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install form_translation
+`
+$ bundle
+$ rails g form_translation:install
+`
 
 ## Usage
 
-TODO: Write usage instructions here
+* In your model include `FormTranslation::ForModel* and specify which attributes
+should be translated.
+```ruby
+class Article < ActiveRecord::Base
+  include FormTranslation::ForModel
+
+  translate_me :subject, :body
+end
+```
+* Within your `simple_form`-Form specify where to put your translation-tabs
+with a `languagify` block.
+```ruby
+<%= simple_form_for(@article) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :date %>
+  </div>
+  <div>
+    <%= f.languagify do |l| %>
+      <%= l.input :subject %>
+      <%= l.input :body %>
+    <% end %>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+```
 
 ## Contributing
 
