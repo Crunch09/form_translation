@@ -1,7 +1,7 @@
 module FormTranslation
   module ForModel
     def values_given_for? lng
-      translated_attrs.each do |a|
+      self.class.translated_attrs.each do |a|
         begin
           result = send "#{lng}_#{a}"
         rescue
@@ -15,7 +15,7 @@ module FormTranslation
 
     def translate! language = I18n.locale
       unless language == FormTranslation.default_language
-        translated_attrs.each do |a|
+        self.class.translated_attrs.each do |a|
           send "#{a}=", send("#{language}_#{a}")
         end
       end
@@ -29,13 +29,23 @@ module FormTranslation
       def translate_me *methods
         store FormTranslation.translation_column
         methods.each do |m|
-          FormTranslation::foreign_languages.each do |l|
+          FormTranslation.foreign_languages.each do |l|
             store_accessor FormTranslation.translation_column, "#{l}_#{m}".to_sym
           end
         end
 
-        define_method :translated_attrs do
-          methods
+        self.class.class_exec do
+          define_method :translated_attrs do
+            methods
+          end
+
+          define_method :form_translations do
+            FormTranslation.foreign_languages.collect do |f|
+              methods.collect do |m|
+                "#{f}_#{m}".to_sym
+              end
+            end.flatten
+          end
         end
       end
     end
