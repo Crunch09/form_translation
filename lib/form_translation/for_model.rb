@@ -2,7 +2,12 @@ module FormTranslation
   module ForModel
     def values_given_for? lng
       translated_attrs.each do |a|
-        result = send "#{lng}_#{a}"
+        begin
+          result = send "#{lng}_#{a}"
+        rescue
+          raise FormTranslation::Errors::InvalidColumnException,
+            'You need to specify an existing and valid column to store your translations in.'
+        end
         return true if result.present?
       end
       false
