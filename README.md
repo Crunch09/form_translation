@@ -1,4 +1,5 @@
 # FormTranslation
+[![Code Climate](https://codeclimate.com/github/Crunch09/form_translation.png)](https://codeclimate.com/github/Crunch09/form_translation)
 
 **Not ready, don't use it in production yet.**
 
