@@ -11,6 +11,9 @@ module FormTranslation
   mattr_accessor :foreign_languages
   @@foreign_languages = [:en]
 
+  mattr_accessor :translation_column
+  @@translation_column = :translation
+
   def self.config
     yield self
   end
