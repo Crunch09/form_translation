@@ -51,6 +51,16 @@ with a `languagify` block.
 <% end %>
 ```
 
+Lastly, make sure to add the translated attributes to your permitted parameters
+so they can be stored. The convention for the attribute name is as follows:
+`language_shortname`_`attribute_name`
+
+```ruby
+def article_params
+  params.require(:article).permit(:subject, :body, :de_subject, :de_body)
+end
+```
+
 ## Contributing
 
 1. Fork it
