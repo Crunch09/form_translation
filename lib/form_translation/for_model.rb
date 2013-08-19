@@ -48,6 +48,14 @@ module FormTranslation
           end
         end
       end
+
+      def translation_names_for *attributes
+        Array(attributes).flatten.collect do |a|
+          FormTranslation.foreign_languages.collect do |f|
+            "#{f}_#{a}".to_sym
+          end
+        end.flatten
+      end
     end
   end
 end
