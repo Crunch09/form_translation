@@ -25,7 +25,7 @@ module FormTranslation
     def li_content rnd
       FormTranslation.languages.collect do |l|
         listyle = ''
-        listyle = 'empty_tab' if l != :de && !object.values_given_for?(l)
+        listyle = 'empty_tab' if l != FormTranslation.default_language && !object.values_given_for?(l)
 
         template.content_tag(:li, class: listyle) do
           template.content_tag(:a, href: "##{l}_#{rnd}") do
@@ -38,7 +38,7 @@ module FormTranslation
     def tab_content rnd
       FormTranslation.languages.collect do |l|
         template.content_tag(:div, class: 'tab-pane', id: "#{l}_#{rnd}") do
-          if l == :de
+          if l == FormTranslation.default_language
             yield self
           else
             instance_exec do
