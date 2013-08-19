@@ -9,7 +9,7 @@ module FormTranslation
     end
 
     def translate! language = I18n.locale
-      unless language == :de
+      unless language == FormTranslation.default_language
         translated_attrs.each do |a|
           send "#{a}=", send("#{language}_#{a}")
         end
