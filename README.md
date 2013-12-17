@@ -34,6 +34,7 @@ end
 ```
 * Within your `simple_form`-Form specify where to put your translation-tabs
 with a `languagify` block.
+
 ```erb
 <%= simple_form_for(@article) do |f| %>
       <div class="form-inputs">
