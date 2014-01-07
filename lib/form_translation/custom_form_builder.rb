@@ -28,7 +28,7 @@ module FormTranslation
         listyle = 'empty_tab' if l != FormTranslation.default_language && !object.values_given_for?(l)
 
         template.content_tag(:li, class: listyle) do
-          template.content_tag(:a, href: "##{l}_#{rnd}") do
+          template.content_tag(:a, href: "##{l}_#{rnd}", :'data-toggle' => 'tab') do
             l.to_s
           end
         end
