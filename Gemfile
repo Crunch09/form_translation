@@ -15,3 +15,8 @@ gemspec
 gem 'jquery-rails'
 gem 'sass-rails', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 3.0.3.0'
+
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
+end
