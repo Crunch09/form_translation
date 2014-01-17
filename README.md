@@ -1,6 +1,6 @@
 # FormTranslation
 [![Code Climate](https://codeclimate.com/github/Crunch09/form_translation.png)](https://codeclimate.com/github/Crunch09/form_translation)
-
+[![Build Status](https://travis-ci.org/Crunch09/form_translation.png?branch=master)](https://travis-ci.org/Crunch09/form_translation)
 **Not ready, don't use it in production yet.**
 
 It uses `ActiveRecord::Store` to store language specific values and adds
