@@ -13,7 +13,7 @@ module FormTranslation
 
   begin
     require 'nested_form/builder_mixin'
-    class NestedCustomFormBuilder < SimpleForm::FormBuilder
+    class NestedCustomFormBuilder < CustomFormBuilder
       include ::NestedForm::BuilderMixin
     end
   rescue LoadError
