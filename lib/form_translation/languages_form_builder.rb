@@ -47,14 +47,11 @@ module FormTranslation
 
     def li_content rnd
       FormTranslation.languages.collect do |l|
-        listyle = ''
         listyle = 'empty_tab' if l != FormTranslation.default_language && !object.values_given_for?(l)
         listyle = 'active' if l == FormTranslation.default_language
 
-        template.content_tag(:li, class: listyle) do
-          template.content_tag(:a, href: "##{l}_#{rnd}", :'data-toggle' => 'tab') do
-            l.to_s
-          end
+        template.content_tag(:li, class: (listyle || '')) do
+          template.link_to(l, "##{l}_#{rnd}", data: {toggle: 'tab'})
         end
       end.join.html_safe
     end
