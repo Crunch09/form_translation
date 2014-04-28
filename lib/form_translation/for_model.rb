@@ -47,7 +47,22 @@ module FormTranslation
             end.flatten
           end
         end
-      end
+        create_translated_getters(methods)
+      end # translate_me
+
+      def create_translated_getters(methods)
+        mod = Module.new
+        methods.each do |nam|
+          mod.define_method nam do
+            return super unless @@_form_translation_locale
+            return super if @@_form_translation_locale == FormTranslation.default_language
+            a = self.send "#{@@_form_translation_locale}_#{nam}"
+            a.presence || a.send(nam)
+          end # define_method
+        end #methods.each
+
+        prepend mod
+      end # create_translated_getters
 
       def translation_names_for *attributes
         Array(attributes).flatten.collect do |a|
