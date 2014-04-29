@@ -3,6 +3,7 @@ require "form_translation/engine"
 require "form_translation/for_model"
 require "form_translation/custom_form_builder"
 require "form_translation/errors"
+require "form_translation/active_record"
 
 module FormTranslation
 
