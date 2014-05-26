@@ -34,18 +34,18 @@ module FormTranslation
           end
         end
 
-        self.class.class_exec do
-          define_method :translated_attrs do
-            methods
-          end
+        _translated_attrs = methods.dup.freeze
+        define_singleton_method :translated_attrs do
+          _translated_attrs
+        end
 
-          define_method :form_translations do
-            FormTranslation.foreign_languages.collect do |f|
-              methods.collect do |m|
-                "#{f}_#{m}".to_sym
-              end
-            end.flatten
+        _form_translations = FormTranslation.foreign_languages.collect do |f|
+          _translated_attrs.collect do |m|
+            "#{f}_#{m}".to_sym
           end
+        end.flatten.freeze
+        define_singleton_method :form_translations do
+          _form_translations
         end
         create_translated_getters(methods)
       end # translate_me
