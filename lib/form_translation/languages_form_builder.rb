@@ -12,7 +12,7 @@ module FormTranslation
       rnd = SecureRandom.hex(8)
       template.content_tag(:div, '') do
         divs = ''
-        divs += template.content_tag(:ul, class: 'nav nav-tabs') do
+        divs += template.content_tag(:ul, class: 'nav nav-tabs form-translation-tabs') do
           li_content rnd
         end
         divs += template.content_tag(:div, class: 'tab-content') do
@@ -51,7 +51,9 @@ module FormTranslation
         listyle = 'active' if l == FormTranslation.default_language
 
         template.content_tag(:li, class: (listyle || '')) do
-          template.link_to(l, "##{l}_#{rnd}", data: {toggle: 'tab'})
+          template.link_to(
+            "#{flag_for(l)} #{l}".html_safe,
+            "##{l}_#{rnd}", data: {toggle: 'tab'})
         end
       end.join.html_safe
     end
@@ -68,6 +70,12 @@ module FormTranslation
           end
         end
       end.join.html_safe
+    end
+
+    def flag_for language
+      flag_shortcut = language
+      flag_shortcut = 'gb' if flag_shortcut.to_sym == :en
+      template.content_tag(:span, '', class: "flag-icon flag-icon-#{flag_shortcut}")
     end
   end
 end
