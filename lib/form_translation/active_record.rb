@@ -14,8 +14,9 @@ module FormTranslation::SwitchLocale
       raise "unsupported language #{loc}" unless FormTranslation.languages.member? loc
       t = self.class_variable_get(:@@_form_translation_locale)
       @@_form_translation_locale = loc
-      yield
+      r = yield
       @@_form_translation_locale = t
+      r
     end
 
     def form_translation_locale
