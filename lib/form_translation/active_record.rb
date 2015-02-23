@@ -7,6 +7,7 @@ module FormTranslation::SwitchLocale
 
   included do
     @@_form_translation_locale = nil
+    @@_form_translation_column = nil
   end
 
   module ClassMethods
@@ -21,6 +22,14 @@ module FormTranslation::SwitchLocale
 
     def form_translation_locale
       @@_form_translation_locale ||= nil
+    end
+
+    def translation_column(column)
+      @@_form_translation_column = column
+    end
+
+    def get_translation_column
+      @@_form_translation_column ||= nil
     end
   end
 end

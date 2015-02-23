@@ -27,10 +27,11 @@ module FormTranslation
 
     module ClassMethods
       def translate_me *methods
-        store FormTranslation.translation_column
+        t_column = self.get_translation_column || FormTranslation.translation_column
+        store t_column
         methods.each do |m|
           FormTranslation.foreign_languages.each do |l|
-            store_accessor FormTranslation.translation_column, "#{l}_#{m}".to_sym
+            store_accessor t_column, "#{l}_#{m}".to_sym
           end
         end
 
