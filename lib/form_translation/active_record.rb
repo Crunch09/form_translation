@@ -7,7 +7,7 @@ module FormTranslation::SwitchLocale
 
   included do
     @@_form_translation_locale = nil
-    @@_form_translation_column = nil
+    attr_accessor :form_translation_column
   end
 
   module ClassMethods
@@ -25,11 +25,11 @@ module FormTranslation::SwitchLocale
     end
 
     def translation_column(column)
-      @@_form_translation_column = column
+      self.instance_variable_set(:@form_translation_column, column)
     end
 
     def get_translation_column
-      @@_form_translation_column ||= nil
+      self.instance_variable_get(:@form_translation_column)
     end
   end
 end
