@@ -19,7 +19,7 @@ class CustomFormBuilderTest < ActiveSupport::TestCase
 
   test "creates text input" do
     translated_content = @p.call(@lfb, :subject)
-    assert_equal("<div class=\"input string optional article_de_subject\"><label class=\"string optional\" for=\"article_de_subject\">De subject</label><input class=\"string optional\" id=\"article_de_subject\" name=\"article[de_subject]\" type=\"text\" /></div>", translated_content)
+    assert_equal("<div class=\"input string optional article_de_subject\"><label class=\"string optional\" for=\"article_de_subject\">De subject</label><input class=\"string optional\" type=\"text\" name=\"article[de_subject]\" id=\"article_de_subject\" /></div>", translated_content)
     assert_equal translated_content.gsub(/[dD]e[_\s]{1}subject/,'subject'),
                  @p.call(@lfb.form_builder, :subject).gsub(/Subject/, 'subject')
   end
