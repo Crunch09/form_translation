@@ -58,7 +58,7 @@ module FormTranslation
             return super() unless self.class.form_translation_locale
             return super() if self.class.form_translation_locale == FormTranslation.default_language
             a = self.send "#{self.class.form_translation_locale}_#{nam}"
-            a.presence || self[nam]
+            a.presence || super()
           end # define_method
         end #methods.each
 
